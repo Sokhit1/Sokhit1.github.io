@@ -37,7 +37,7 @@
 <meta name="theme-color" content="#0A1E57">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Kantumruy+Pro:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --night:#0A1E57; --night-2:#0F2A73; --night-3:#1A3A8F;
@@ -80,6 +80,19 @@ h2{font-size:clamp(26px,3vw,32px);font-weight:700}
 .nav ul a:hover{color:#fff}
 .nav ul a.active::after{content:"";position:absolute;left:12px;right:12px;bottom:4px;height:2px;background:var(--tan)}
 @media (max-width:880px){.nav ul{display:none}}
+
+.lang{display:flex;gap:2px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:6px;padding:3px}
+.lang button{font:inherit;font-size:13px;font-weight:600;color:#D3DCF0;background:none;border:0;border-radius:4px;padding:0 10px;min-height:34px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:#fff;color:var(--night)}
+.nav-right{display:flex;align-items:center;gap:12px}
+@media (max-width:560px){.nav-right .btn{display:none}}
+html[lang="km"] body{font-family:"Kantumruy Pro","Noto Sans Khmer","Inter",sans-serif;line-height:1.85}
+html[lang="zh"] body{font-family:"Inter","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif}
+html[lang="km"] .hero .sub,html[lang="zh"] .hero .sub{letter-spacing:.04em;text-transform:none}
+html[lang="km"] h1,html[lang="km"] h2,html[lang="km"] h3{line-height:1.45;letter-spacing:0}
+html[lang="zh"] h2,html[lang="zh"] h3{letter-spacing:.01em}
+.hero h1{font-family:"Inter",sans-serif;white-space:nowrap}
+html[lang="km"] .hero h1{line-height:1;letter-spacing:-.04em}
 
 /* Hero */
 .hero{background:var(--night);color:#fff;position:relative;overflow:hidden;min-height:640px;display:flex;align-items:center}
@@ -235,15 +248,22 @@ footer a{color:#E6E9EC}
     <a class="logo" href="#top" aria-label="PLACK Sokhit, home">P<span>S</span></a>
     <nav aria-label="Main">
       <ul>
-        <li><a href="#top" class="active">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#top" class="active"><span data-i18n="nav_home">Home</span></a></li>
+        <li><a href="#about"><span data-i18n="nav_about">About</span></a></li>
+        <li><a href="#research"><span data-i18n="nav_research">Research</span></a></li>
+        <li><a href="#publications"><span data-i18n="nav_pubs"><span data-i18n="pubs">Publications</span></span></a></li>
+        <li><a href="#projects"><span data-i18n="nav_projects">Projects</span></a></li>
+        <li><a href="#contact"><span data-i18n="contact">Contact</span></a></li>
       </ul>
     </nav>
-    <a class="btn btn-tan" href="#contact" style="min-height:40px;padding:0 18px;font-size:14px">Get in touch</a>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="km" aria-pressed="false" lang="km">ខ្មែរ</button>
+        <button type="button" data-lang="zh" aria-pressed="false" lang="zh">中文</button>
+      </div>
+      <a class="btn btn-tan" href="#contact" style="min-height:40px;padding:0 18px;font-size:14px"><span data-i18n="get_in_touch">Get in touch</span></a>
+    </div>
   </div>
 </header>
 
@@ -253,12 +273,12 @@ footer a{color:#E6E9EC}
     <div class="wrap hero-inner">
       <div class="hero-copy">
         <h1 class="in" style="--d:1"><span class="t">PLACK</span> Sokhit</h1>
-        <p class="sub in" style="--d:2">Dr. · Lecturer in Transport Engineering · ITC</p>
-        <p class="p in" style="--d:3">I research how people walk, breathe and travel in Phnom Penh, and teach the next generation of transport engineers at the Institute of Technology of Cambodia.</p>
-        <p class="p in" style="--d:4">From street surveys and air-quality measurements to 3D digital twins, I turn data into evidence for safer, cleaner transport.</p>
+        <p class="sub in" style="--d:2"><span data-i18n="sub">Dr. · Lecturer in Transport Engineering · ITC</span></p>
+        <p class="p in" style="--d:3"><span data-i18n="hero_p1">I research how people walk, breathe and travel in Phnom Penh, and teach the next generation of transport engineers at the Institute of Technology of Cambodia.</span></p>
+        <p class="p in" style="--d:4"><span data-i18n="hero_p2">From street surveys and air-quality measurements to 3D digital twins, I turn data into evidence for safer, cleaner transport.</span></p>
         <div class="cta in" style="--d:5">
-          <a class="btn btn-tan" href="#publications">See my research</a>
-          <a class="btn btn-line" href="#contact">Contact me</a>
+          <a class="btn btn-tan" href="#publications"><span data-i18n="see_research">See my research</span></a>
+          <a class="btn btn-line" href="#contact"><span data-i18n="contact_me">Contact me</span></a>
         </div>
       </div>
       <div class="portrait in" style="--d:2"><img src="https://github.com/Sokhit1.png?size=800" alt="Portrait of Dr. PLACK Sokhit" width="380" height="380"></div>
@@ -269,51 +289,51 @@ footer a{color:#E6E9EC}
   <section class="about" id="about">
     <div class="wrap grid">
       <div class="reveal">
-        <h2><span class="badge" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>About me</h2>
-        <p>I am a lecturer and researcher in transport engineering at the Institute of Technology of Cambodia. My work combines field measurements, statistics and digital tools to understand how Phnom Penh's streets work for the people who use them, and to show how they could work better.</p>
-        <p class="motto">Evidence-based. Practical. Built for Cambodia.</p>
-        <a class="btn btn-dark" href="https://scholar.google.com/citations?user=O5WWAx0AAAAJ">View my Google Scholar</a>
+        <h2><span class="badge" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span data-i18n="about_me">About me</span></h2>
+        <p><span data-i18n="about_p">I am a lecturer and researcher in transport engineering at the Institute of Technology of Cambodia. My work combines field measurements, statistics and digital tools to understand how Phnom Penh's streets work for the people who use them, and to show how they could work better.</span></p>
+        <p class="motto"><span data-i18n="motto">Evidence-based. Practical. Built for Cambodia.</span></p>
+        <a class="btn btn-dark" href="https://scholar.google.com/citations?user=O5WWAx0AAAAJ"><span data-i18n="view_scholar">View my Google Scholar</span></a>
       </div>
       <div class="divider" aria-hidden="true"></div>
       <div class="reveal" style="--d:1">
-        <div class="feat"><span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l5 5L20 7"/></svg></span><div><h3>Field-based research</h3><p>Surveys, sensors and traffic counts on real Phnom Penh streets.</p></div></div>
-        <div class="feat"><span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><div><h3>Data and modelling</h3><p>Statistics, indices and 3D digital twins that turn data into decisions.</p></div></div>
-        <div class="feat"><span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8l10-5 10 5-10 5z"/><path d="M6 10v5c3 2 9 2 12 0v-5"/></svg></span><div><h3>Teaching and mentoring</h3><p>Undergraduate and master's courses, with full materials online for students.</p></div></div>
+        <div class="feat"><span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l5 5L20 7"/></svg></span><div><h3><span data-i18n="f1_t">Field-based research</span></h3><p><span data-i18n="f1_p">Surveys, sensors and traffic counts on real Phnom Penh streets.</span></p></div></div>
+        <div class="feat"><span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><div><h3><span data-i18n="f2_t">Data and modelling</span></h3><p><span data-i18n="f2_p">Statistics, indices and 3D digital twins that turn data into decisions.</span></p></div></div>
+        <div class="feat"><span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 8l10-5 10 5-10 5z"/><path d="M6 10v5c3 2 9 2 12 0v-5"/></svg></span><div><h3><span data-i18n="f3_t">Teaching and mentoring</span></h3><p><span data-i18n="f3_p">Undergraduate and master's courses, with full materials online for students.</span></p></div></div>
       </div>
     </div>
   </section>
 
   <section class="services" id="research">
     <div class="wrap">
-      <h2 class="reveal">My research areas</h2>
+      <h2 class="reveal"><span data-i18n="areas">My research areas</span></h2>
       <div class="srow">
-        <div class="svc reveal" style="--d:0"><svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="26" cy="8" r="3.5"/><path d="M20 42l4-12 6 6v6M16 24l6-6 6 4 6 2M22 18l-2 12-6 12"/></svg><h3>Walkability</h3><p>Pedestrian-weighted walkability indices and sidewalks.</p></div>
-        <div class="svc reveal" style="--d:1"><svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 16h22a6 6 0 1 0-6-6M6 24h30a6 6 0 1 1-6 6M6 32h16"/></svg><h3>Air quality</h3><p>Pedestrian exposure to traffic pollution.</p></div>
-        <div class="svc reveal" style="--d:2"><svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="34" r="6"/><circle cx="35" cy="34" r="6"/><path d="M13 34l8-14h10l4 14M21 20l-4-8h-6M31 20l2-6h6"/></svg><h3>Motorcycle emissions</h3><p>Measured emissions and their effect on local air.</p></div>
-        <div class="svc reveal" style="--d:3"><svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="6" width="30" height="28" rx="5"/><path d="M9 22h30M16 42l2-8M32 42l-2-8"/><circle cx="16" cy="28" r="1"/><circle cx="32" cy="28" r="1"/></svg><h3>Public transport</h3><p>Bus network analysis and route planning.</p></div>
-        <div class="svc reveal" style="--d:4"><svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 32l40-12-6-4-12 4-10-12h-4l6 14-10 4-4-4z"/><path d="M6 42h36"/></svg><h3>Air transport</h3><p>Airport capacity, airlines and sustainable aviation.</p></div>
-        <div class="svc reveal" style="--d:5"><svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 4l18 10v20L24 44 6 34V14z"/><path d="M24 44V24M42 14L24 24 6 14"/></svg><h3>Digital twins</h3><p>3D models of logistics parks and school zones.</p></div>
+        <div class="svc reveal" style="--d:0"><svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="26" cy="8" r="3.5"/><path d="M20 42l4-12 6 6v6M16 24l6-6 6 4 6 2M22 18l-2 12-6 12"/></svg><h3><span data-i18n="a1_t">Walkability</span></h3><p><span data-i18n="a1_p">Pedestrian-weighted walkability indices and sidewalks.</span></p></div>
+        <div class="svc reveal" style="--d:1"><svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 16h22a6 6 0 1 0-6-6M6 24h30a6 6 0 1 1-6 6M6 32h16"/></svg><h3><span data-i18n="a2_t">Air quality</span></h3><p><span data-i18n="a2_p">Pedestrian exposure to traffic pollution.</span></p></div>
+        <div class="svc reveal" style="--d:2"><svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="34" r="6"/><circle cx="35" cy="34" r="6"/><path d="M13 34l8-14h10l4 14M21 20l-4-8h-6M31 20l2-6h6"/></svg><h3><span data-i18n="a3_t">Motorcycle emissions</span></h3><p><span data-i18n="a3_p">Measured emissions and their effect on local air.</span></p></div>
+        <div class="svc reveal" style="--d:3"><svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="6" width="30" height="28" rx="5"/><path d="M9 22h30M16 42l2-8M32 42l-2-8"/><circle cx="16" cy="28" r="1"/><circle cx="32" cy="28" r="1"/></svg><h3><span data-i18n="a4_t">Public transport</span></h3><p><span data-i18n="a4_p">Bus network analysis and route planning.</span></p></div>
+        <div class="svc reveal" style="--d:4"><svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 32l40-12-6-4-12 4-10-12h-4l6 14-10 4-4-4z"/><path d="M6 42h36"/></svg><h3><span data-i18n="a5_t">Air transport</span></h3><p><span data-i18n="a5_p">Airport capacity, airlines and sustainable aviation.</span></p></div>
+        <div class="svc reveal" style="--d:5"><svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 4l18 10v20L24 44 6 34V14z"/><path d="M24 44V24M42 14L24 24 6 14"/></svg><h3><span data-i18n="a6_t">Digital twins</span></h3><p><span data-i18n="a6_p">3D models of logistics parks and school zones.</span></p></div>
       </div>
     </div>
   </section>
 
   <section class="projects" id="projects">
     <div class="wrap">
-      <div class="head reveal"><h2>Selected projects</h2><a class="btn btn-line-light" href="https://github.com/Sokhit1">View all on GitHub</a></div>
+      <div class="head reveal"><h2><span data-i18n="sel_proj">Selected projects</span></h2><a class="btn btn-line-light" href="https://github.com/Sokhit1"><span data-i18n="view_gh">View all on GitHub</span></a></div>
       <div class="pgrid">
         <a class="card reveal" style="--d:0" href="https://smart-warehouse-twin.netlify.app">
-          <div class="shot s1"><div class="bar"><b>SWT</b><i>Live · 3D</i></div><div class="grid3d" aria-hidden="true"></div><p class="ttl">Logistics park, live in 3D.</p><span class="mini">Open twin</span></div>
-          <h3>Smart Warehouse Twin</h3><p>Digital twin · Cambodia Digital Awards 2026</p>
+          <div class="shot s1"><div class="bar"><b>SWT</b><i>Live · 3D</i></div><div class="grid3d" aria-hidden="true"></div><p class="ttl"><span data-i18n="ttl1">Logistics park, live in 3D.</span></p><span class="mini"><span data-i18n="mini1">Open twin</span></span></div>
+          <h3>Smart Warehouse Twin</h3><p><span data-i18n="c1_p">Digital twin · Cambodia Digital Awards 2026</span></p>
         </a>
         <div class="card reveal" style="--d:1">
-          <div class="shot s2"><div class="bar"><b>SSZ</b><i>3D model</i></div><div class="road" aria-hidden="true"></div><p class="ttl">Safer streets around schools.</p><span class="mini">3D model</span></div>
-          <h3>School Safety Zone Twin</h3><p>Road safety · 3D model and website</p>
+          <div class="shot s2"><div class="bar"><b>SSZ</b><i><span data-i18n="mini2">3D model</span></i></div><div class="road" aria-hidden="true"></div><p class="ttl"><span data-i18n="ttl2">Safer streets around schools.</span></p><span class="mini"><span data-i18n="mini2">3D model</span></span></div>
+          <h3><span data-i18n="c2_h">School Safety Zone Twin</span></h3><p><span data-i18n="c2_p">Road safety · 3D model and website</span></p>
         </div>
         <a class="card reveal" style="--d:2" href="https://github.com/Sokhit1/PLACK-Sokhit/tree/air-transport-planning/air-transport-planning">
           <div class="shot s3"><div class="bar"><b>ATPM</b><i>8 modules</i></div>
             <svg class="plane" viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M2 26l58-16-6-4-16 4-14-8h-6l8 12-14 6-6-4z"/></svg>
-            <p class="ttl">Air transport, module by module.</p><span class="mini">Open course</span></div>
-          <h3>Air Transport Planning and Management</h3><p>Teaching · slides, exercises and quizzes</p>
+            <p class="ttl"><span data-i18n="ttl3">Air transport, module by module.</span></p><span class="mini"><span data-i18n="mini3">Open course</span></span></div>
+          <h3><span data-i18n="c3_h">Air Transport Planning and Management</span></h3><p><span data-i18n="c3_p">Teaching · slides, exercises and quizzes</span></p>
         </a>
       </div>
     </div>
@@ -321,21 +341,21 @@ footer a{color:#E6E9EC}
 
   <section class="pubs" id="publications">
     <div class="wrap">
-      <div class="head reveal"><h2>Publications</h2><a href="https://scholar.google.com/citations?user=O5WWAx0AAAAJ">All on Google Scholar</a></div>
+      <div class="head reveal"><h2><span data-i18n="nav_pubs"><span data-i18n="pubs">Publications</span></span></h2><a href="https://scholar.google.com/citations?user=O5WWAx0AAAAJ"><span data-i18n="all_scholar">All on Google Scholar</span></a></div>
       <div class="reveal">
-        <p class="kind">Journal articles</p>
+        <p class="kind"><span data-i18n="k_journal">Journal articles</span></p>
         <ol class="plist">
-          <li><span class="y">2026</span><div><p class="t">Assessing the impact of motorcycle emissions on urban air quality: A case study at the Institute of Technology of Cambodia</p><p class="m">Phiny, L., Phun, V.K., Saum, N., <b>Plack, S.</b> · Techno-Science Research Journal 14(1), 24–31</p></div><a class="go" href="https://techno-srj.itc.edu.kh/public/journal/document/%5B4%5D.pdf">Read PDF</a></li>
+          <li><span class="y">2026</span><div><p class="t">Assessing the impact of motorcycle emissions on urban air quality: A case study at the Institute of Technology of Cambodia</p><p class="m">Phiny, L., Phun, V.K., Saum, N., <b>Plack, S.</b> · Techno-Science Research Journal 14(1), 24–31</p></div><a class="go" href="https://techno-srj.itc.edu.kh/public/journal/document/%5B4%5D.pdf"><span data-i18n="read_pdf">Read PDF</span></a></li>
           <li><span class="y">2025</span><div><p class="t">Weighting approach for assessing walkability index of urban streets: Case study of Phnom Penh, Cambodia</p><p class="m"><b>Plack, S.</b>, Phun, V.K. · Journal of the Eastern Asia Society for Transportation Studies 16, PP3982</p></div><a class="go" href="https://www.jstage.jst.go.jp/article/easts/16/0/16_PP3982/_article/-char/en">J-STAGE</a></li>
           <li><span class="y">2025</span><div><p class="t">Assessing the impact of road traffic composition on pedestrian exposure to air pollution in urban area: Evidence from Phnom Penh streets, Cambodia</p><p class="m"><b>Plack, S.</b>, Phun, V.K. · Journal of the Eastern Asia Society for Transportation Studies 16, PP4187</p></div><a class="go" href="https://www.jstage.jst.go.jp/article/easts/16/0/16_PP4187/_article/-char/en">J-STAGE</a></li>
           <li><span class="y">2024</span><div><p class="t">Walkability and importance assessment of pedestrian facilities in Phnom Penh City</p><p class="m"><b>Plack, S.</b>, Phun, V.K., Yang, P., Taing, K. · Techno-Science Research Journal 12(1), 31–45</p></div><a class="go" href="https://doi.org/10.64702/Techno-SRJ.2024.V12.I1.06">DOI</a></li>
         </ol>
-        <p class="kind">Conference papers</p>
+        <p class="kind"><span data-i18n="k_conf">Conference papers</span></p>
         <ol class="plist">
-          <li><span class="y">2025</span><div><p class="t">Factors affecting air quality at urban parking area: Case study of motorcycle emissions inside Institute of Technology of Cambodia (ITC)</p><p class="m">Phiny, L., Phun, V.K., Saum, N., <b>Plack, S.</b> · Proceedings of the EASTS 15</p></div><a class="go" href="https://easts.info/on-line/proceedings/vol.15/pdf/F_PP3891.pdf">Read PDF</a></li>
+          <li><span class="y">2025</span><div><p class="t">Factors affecting air quality at urban parking area: Case study of motorcycle emissions inside Institute of Technology of Cambodia (ITC)</p><p class="m">Phiny, L., Phun, V.K., Saum, N., <b>Plack, S.</b> · Proceedings of the EASTS 15</p></div><a class="go" href="https://easts.info/on-line/proceedings/vol.15/pdf/F_PP3891.pdf"><span data-i18n="read_pdf">Read PDF</span></a></li>
           <li><span class="y">2025</span><div><p class="t">Bus route planning using Dijkstra algorithm: A case study of the public bus system in Phnom Penh</p><p class="m">Saum, N., <b>Plack, S.</b>, Srorn, P., Vin, D., Ek, V.P. · Proceedings of the EASTS 15</p></div><a class="go" href="https://www.researchgate.net/publication/399423475_Bus_Route_Planning_using_Dijkstra_Algorithm_A_Case_Study_of_the_Public_Bus_System_in_Phnom_Penh">ResearchGate</a></li>
         </ol>
-        <p class="kind">Thesis</p>
+        <p class="kind"><span data-i18n="k_thesis">Thesis</span></p>
         <ol class="plist">
           <li><span class="y">2023</span><div><p class="t">Pedestrian mode of transport in Phnom Penh City</p><p class="m"><b>Plack, S.</b> · Master's thesis, Transport and Infrastructure Engineering, Institute of Technology of Cambodia</p></div><span></span></li>
         </ol>
@@ -346,33 +366,33 @@ footer a{color:#E6E9EC}
   <section class="bottom" id="contact">
     <div class="wrap bgrid">
       <div class="reveal">
-        <h2>Skills and tools</h2>
+        <h2><span data-i18n="skills">Skills and tools</span></h2>
         <ul class="skills">
-          <li><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><div><b>Statistics</b><span>Regression, ANOVA, walkability indices</span></div></li>
-          <li><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 3h6M10 3v6L4 19a1 1 0 0 0 1 2h14a1 1 0 0 0 1-2l-6-10V3"/></svg><div><b>Air-quality measurement</b><span>Particulate matter, particle number, LDSA</span></div></li>
-          <li><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg><div><b>BIM and 3D modelling</b><span>Autodesk Revit, SketchUp, three.js</span></div></li>
-          <li><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg><div><b>Programming and data</b><span>Python, JavaScript, SQL, Excel</span></div></li>
-          <li><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 16l20-6-3-2-6 2-5-6H6l3 7-5 2-2-2z"/></svg><div><b>Transport planning</b><span>Airport capacity, bus networks, traffic surveys</span></div></li>
+          <li><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><div><b><span data-i18n="s1_t">Statistics</span></b><span><span data-i18n="s1_p">Regression, ANOVA, walkability indices</span></span></div></li>
+          <li><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 3h6M10 3v6L4 19a1 1 0 0 0 1 2h14a1 1 0 0 0 1-2l-6-10V3"/></svg><div><b><span data-i18n="s2_t">Air-quality measurement</span></b><span><span data-i18n="s2_p">Particulate matter, particle number, LDSA</span></span></div></li>
+          <li><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg><div><b><span data-i18n="s3_t">BIM and 3D modelling</span></b><span>Autodesk Revit, SketchUp, three.js</span></div></li>
+          <li><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg><div><b><span data-i18n="s4_t">Programming and data</span></b><span>Python, JavaScript, SQL, Excel</span></div></li>
+          <li><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 16l20-6-3-2-6 2-5-6H6l3 7-5 2-2-2z"/></svg><div><b><span data-i18n="s5_t">Transport planning</span></b><span><span data-i18n="s5_p">Airport capacity, bus networks, traffic surveys</span></span></div></li>
         </ul>
       </div>
       <div class="divider" aria-hidden="true"></div>
       <div class="reveal" style="--d:1">
-        <h2>Contact</h2>
+        <h2><span data-i18n="contact">Contact</span></h2>
         <div class="cgrid">
           <div class="cinfo">
-            <p>Have a research idea or a question about my course? I'd be glad to hear from you.</p>
+            <p><span data-i18n="contact_p">Have a research idea or a question about my course? I'd be glad to hear from you.</span></p>
             <ul>
               <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:sokhit_plack@gsc.itc.edu.kh">sokhit_plack@gsc.itc.edu.kh</a></li>
-              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Institute of Technology of Cambodia, Phnom Penh</li>
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg><span data-i18n="addr">Institute of Technology of Cambodia, Phnom Penh</span></li>
               <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 19c-4 1-4-2-6-2M15 22v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6 0C6.8 2 5.8 2.3 5.8 2.3a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.4 8.7c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V22"/></svg><a href="https://github.com/Sokhit1">github.com/Sokhit1</a></li>
             </ul>
           </div>
           <form id="cform" novalidate>
-            <div class="f"><label for="cn">Your name</label><input id="cn" name="name" autocomplete="name" required></div>
-            <div class="f"><label for="ce">Your email</label><input id="ce" name="email" type="email" autocomplete="email" required></div>
-            <div class="f"><label for="cm">Your message</label><textarea id="cm" name="message" required></textarea></div>
-            <button class="btn btn-dark" type="submit">Open in my email app</button>
-            <p class="note" id="cnote">Your email app opens with the message ready to send.</p>
+            <div class="f"><label for="cn"><span data-i18n="l_name">Your name</span></label><input id="cn" name="name" autocomplete="name" required></div>
+            <div class="f"><label for="ce"><span data-i18n="l_email">Your email</span></label><input id="ce" name="email" type="email" autocomplete="email" required></div>
+            <div class="f"><label for="cm"><span data-i18n="l_msg">Your message</span></label><textarea id="cm" name="message" required></textarea></div>
+            <button class="btn btn-dark" type="submit"><span data-i18n="send">Open in my email app</span></button>
+            <p class="note" id="cnote"><span data-i18n="note">Your email app opens with the message ready to send.</span></p>
           </form>
         </div>
       </div>
@@ -381,7 +401,7 @@ footer a{color:#E6E9EC}
 </main>
 
 <footer>
-  <div class="wrap"><span>© 2026 Dr. PLACK Sokhit · Institute of Technology of Cambodia</span><span><a href="https://scholar.google.com/citations?user=O5WWAx0AAAAJ">Google Scholar</a> · <a href="https://github.com/Sokhit1">GitHub</a></span></div>
+  <div class="wrap"><span><span data-i18n="foot">© 2026 Dr. PLACK Sokhit · Institute of Technology of Cambodia</span></span><span><a href="https://scholar.google.com/citations?user=O5WWAx0AAAAJ">Google Scholar</a> · <a href="https://github.com/Sokhit1">GitHub</a></span></div>
 </footer>
 
 <script>
@@ -472,6 +492,23 @@ footer a{color:#E6E9EC}
     new IntersectionObserver(es=>{running=es[0].isIntersecting; if(running){last=performance.now();requestAnimationFrame(frame);}}).observe(cv);
   })();
 
+
+  // ===== Languages =====
+  const I18N={"en": {"nav_home": "Home", "nav_about": "About", "nav_research": "Research", "nav_pubs": "Publications", "nav_projects": "Projects", "contact": "Contact", "get_in_touch": "Get in touch", "sub": "Dr. · Lecturer in Transport Engineering · ITC", "hero_p1": "I research how people walk, breathe and travel in Phnom Penh, and teach the next generation of transport engineers at the Institute of Technology of Cambodia.", "hero_p2": "From street surveys and air-quality measurements to 3D digital twins, I turn data into evidence for safer, cleaner transport.", "see_research": "See my research", "contact_me": "Contact me", "about_me": "About me", "about_p": "I am a lecturer and researcher in transport engineering at the Institute of Technology of Cambodia. My work combines field measurements, statistics and digital tools to understand how Phnom Penh's streets work for the people who use them, and to show how they could work better.", "motto": "Evidence-based. Practical. Built for Cambodia.", "view_scholar": "View my Google Scholar", "f1_t": "Field-based research", "f1_p": "Surveys, sensors and traffic counts on real Phnom Penh streets.", "f2_t": "Data and modelling", "f2_p": "Statistics, indices and 3D digital twins that turn data into decisions.", "f3_t": "Teaching and mentoring", "f3_p": "Undergraduate and master's courses, with full materials online for students.", "areas": "My research areas", "a1_t": "Walkability", "a1_p": "Pedestrian-weighted walkability indices and sidewalks.", "a2_t": "Air quality", "a2_p": "Pedestrian exposure to traffic pollution.", "a3_t": "Motorcycle emissions", "a3_p": "Measured emissions and their effect on local air.", "a4_t": "Public transport", "a4_p": "Bus network analysis and route planning.", "a5_t": "Air transport", "a5_p": "Airport capacity, airlines and sustainable aviation.", "a6_t": "Digital twins", "a6_p": "3D models of logistics parks and school zones.", "sel_proj": "Selected projects", "view_gh": "View all on GitHub", "ttl1": "Logistics park, live in 3D.", "mini1": "Open twin", "ttl2": "Safer streets around schools.", "mini2": "3D model", "ttl3": "Air transport, module by module.", "mini3": "Open course", "c1_p": "Digital twin · Cambodia Digital Awards 2026", "c2_h": "School Safety Zone Twin", "c2_p": "Road safety · 3D model and website", "c3_h": "Air Transport Planning and Management", "c3_p": "Teaching · slides, exercises and quizzes", "pubs": "Publications", "all_scholar": "All on Google Scholar", "k_journal": "Journal articles", "k_conf": "Conference papers", "k_thesis": "Thesis", "read_pdf": "Read PDF", "skills": "Skills and tools", "s1_t": "Statistics", "s1_p": "Regression, ANOVA, walkability indices", "s2_t": "Air-quality measurement", "s2_p": "Particulate matter, particle number, LDSA", "s3_t": "BIM and 3D modelling", "s4_t": "Programming and data", "s5_t": "Transport planning", "s5_p": "Airport capacity, bus networks, traffic surveys", "contact_p": "Have a research idea or a question about my course? I'd be glad to hear from you.", "addr": "Institute of Technology of Cambodia, Phnom Penh", "l_name": "Your name", "l_email": "Your email", "l_msg": "Your message", "send": "Open in my email app", "note": "Your email app opens with the message ready to send.", "foot": "© 2026 Dr. PLACK Sokhit · Institute of Technology of Cambodia", "err": "Please add your name, a valid email and a message.", "opening": "Opening your email app…"}, "km": {"nav_home": "ទំព័រដើម", "nav_about": "អំពីខ្ញុំ", "nav_research": "ការស្រាវជ្រាវ", "nav_pubs": "ស្នាដៃបោះពុម្ព", "nav_projects": "គម្រោង", "contact": "ទំនាក់ទំនង", "get_in_touch": "ទាក់ទងមកខ្ញុំ", "sub": "បណ្ឌិត · សាស្ត្រាចារ្យផ្នែកវិស្វកម្មដឹកជញ្ជូន · ITC", "hero_p1": "ខ្ញុំស្រាវជ្រាវអំពីរបៀបដែលមនុស្សដើរ ដកដង្ហើម និងធ្វើដំណើរនៅរាជធានីភ្នំពេញ ហើយបង្រៀនវិស្វករដឹកជញ្ជូនជំនាន់ថ្មីនៅវិទ្យាស្ថានបច្ចេកវិទ្យាកម្ពុជា។", "hero_p2": "ចាប់ពីការស្ទង់មតិតាមដងផ្លូវ និងការវាស់គុណភាពខ្យល់ រហូតដល់ឌីជីថលធ្វីន (Digital Twin) ៣វិមាត្រ ខ្ញុំបំប្លែងទិន្នន័យទៅជាភស្តុតាង សម្រាប់ការដឹកជញ្ជូនដែលមានសុវត្ថិភាព និងស្អាតជាងមុន។", "see_research": "មើលការស្រាវជ្រាវរបស់ខ្ញុំ", "contact_me": "ទាក់ទងខ្ញុំ", "about_me": "អំពីខ្ញុំ", "about_p": "ខ្ញុំជាសាស្ត្រាចារ្យ និងអ្នកស្រាវជ្រាវផ្នែកវិស្វកម្មដឹកជញ្ជូន នៅវិទ្យាស្ថានបច្ចេកវិទ្យាកម្ពុជា។ ការងាររបស់ខ្ញុំរួមបញ្ចូលការវាស់វែងនៅទីតាំងជាក់ស្តែង ស្ថិតិ និងឧបករណ៍ឌីជីថល ដើម្បីយល់ពីរបៀបដែលដងផ្លូវនៅភ្នំពេញបម្រើដល់អ្នកប្រើប្រាស់ និងបង្ហាញពីវិធីធ្វើឱ្យវាប្រសើរជាងនេះ។", "motto": "ផ្អែកលើភស្តុតាង។ អនុវត្តជាក់ស្តែង។ សម្រាប់កម្ពុជា។", "view_scholar": "មើល Google Scholar របស់ខ្ញុំ", "f1_t": "ការស្រាវជ្រាវនៅទីតាំងជាក់ស្តែង", "f1_p": "ការស្ទង់មតិ ឧបករណ៍ចាប់សញ្ញា និងការរាប់ចរាចរណ៍ លើដងផ្លូវពិតៗនៅភ្នំពេញ។", "f2_t": "ទិន្នន័យ និងការធ្វើគំរូ", "f2_p": "ស្ថិតិ សន្ទស្សន៍ និងឌីជីថលធ្វីន ៣វិមាត្រ ដែលបំប្លែងទិន្នន័យទៅជាការសម្រេចចិត្ត។", "f3_t": "ការបង្រៀន និងការណែនាំ", "f3_p": "វគ្គសិក្សាថ្នាក់បរិញ្ញាបត្រ និងអនុបណ្ឌិត ជាមួយឯកសារសិក្សាពេញលេញតាមអនឡាញសម្រាប់និស្សិត។", "areas": "វិស័យស្រាវជ្រាវរបស់ខ្ញុំ", "a1_t": "ភាពងាយស្រួលដើរ", "a1_p": "សន្ទស្សន៍ភាពងាយស្រួលដើរ ផ្អែកលើទស្សនៈអ្នកថ្មើរជើង និងចិញ្ចើមផ្លូវ។", "a2_t": "គុណភាពខ្យល់", "a2_p": "ការប៉ះពាល់របស់អ្នកថ្មើរជើងនឹងការបំពុលពីចរាចរណ៍។", "a3_t": "ការបញ្ចេញឧស្ម័នពីម៉ូតូ", "a3_p": "ការវាស់ការបញ្ចេញឧស្ម័ន និងផលប៉ះពាល់លើខ្យល់ក្នុងតំបន់។", "a4_t": "ការដឹកជញ្ជូនសាធារណៈ", "a4_p": "ការវិភាគបណ្តាញឡានក្រុង និងការរៀបចំផែនការខ្សែផ្លូវ។", "a5_t": "ការដឹកជញ្ជូនតាមផ្លូវអាកាស", "a5_p": "សមត្ថភាពព្រលានយន្តហោះ ក្រុមហ៊ុនអាកាសចរណ៍ និងអាកាសចរណ៍និរន្តរភាព។", "a6_t": "ឌីជីថលធ្វីន", "a6_p": "គំរូ ៣វិមាត្រនៃឧទ្យានភស្តុភារ និងតំបន់សាលារៀន។", "sel_proj": "គម្រោងដែលបានជ្រើសរើស", "view_gh": "មើលទាំងអស់នៅលើ GitHub", "ttl1": "ឧទ្យានភស្តុភារ ផ្ទាល់ជា ៣វិមាត្រ។", "mini1": "បើកមើល", "ttl2": "ផ្លូវសុវត្ថិភាពជុំវិញសាលារៀន។", "mini2": "គំរូ ៣វិមាត្រ", "ttl3": "ដឹកជញ្ជូនផ្លូវអាកាស តាមមេរៀននីមួយៗ។", "mini3": "បើកវគ្គសិក្សា", "c1_p": "ឌីជីថលធ្វីន · Cambodia Digital Awards 2026", "c2_h": "ឌីជីថលធ្វីនតំបន់សុវត្ថិភាពសាលារៀន", "c2_p": "សុវត្ថិភាពចរាចរណ៍ · គំរូ ៣វិមាត្រ និងគេហទំព័រ", "c3_h": "ផែនការ និងការគ្រប់គ្រងការដឹកជញ្ជូនតាមផ្លូវអាកាស", "c3_p": "ការបង្រៀន · ស្លាយ លំហាត់ និងសំណួរ", "pubs": "ស្នាដៃបោះពុម្ព", "all_scholar": "ទាំងអស់នៅលើ Google Scholar", "k_journal": "អត្ថបទទស្សនាវដ្តី", "k_conf": "អត្ថបទសន្និសីទ", "k_thesis": "និក្ខេបបទ", "read_pdf": "អាន PDF", "skills": "ជំនាញ និងឧបករណ៍", "s1_t": "ស្ថិតិ", "s1_p": "Regression, ANOVA, សន្ទស្សន៍ភាពងាយស្រួលដើរ", "s2_t": "ការវាស់គុណភាពខ្យល់", "s2_p": "ភាគល្អិត (PM), ចំនួនភាគល្អិត, LDSA", "s3_t": "BIM និងការធ្វើគំរូ ៣វិមាត្រ", "s4_t": "ការសរសេរកម្មវិធី និងទិន្នន័យ", "s5_t": "ផែនការដឹកជញ្ជូន", "s5_p": "សមត្ថភាពព្រលានយន្តហោះ បណ្តាញឡានក្រុង ការស្ទង់ចរាចរណ៍", "contact_p": "មានគំនិតស្រាវជ្រាវ ឬសំណួរអំពីវគ្គសិក្សារបស់ខ្ញុំមែនទេ? ខ្ញុំរីករាយនឹងទទួលដំណឹងពីអ្នក។", "addr": "វិទ្យាស្ថានបច្ចេកវិទ្យាកម្ពុជា រាជធានីភ្នំពេញ", "l_name": "ឈ្មោះរបស់អ្នក", "l_email": "អ៊ីមែលរបស់អ្នក", "l_msg": "សាររបស់អ្នក", "send": "បើកក្នុងកម្មវិធីអ៊ីមែល", "note": "កម្មវិធីអ៊ីមែលរបស់អ្នកនឹងបើក ជាមួយសារដែលរួចរាល់សម្រាប់ផ្ញើ។", "foot": "© ២០២៦ បណ្ឌិត PLACK Sokhit · វិទ្យាស្ថានបច្ចេកវិទ្យាកម្ពុជា", "err": "សូមបញ្ចូលឈ្មោះ អ៊ីមែលត្រឹមត្រូវ និងសារ។", "opening": "កំពុងបើកកម្មវិធីអ៊ីមែល…"}, "zh": {"nav_home": "首页", "nav_about": "关于我", "nav_research": "研究", "nav_pubs": "论文发表", "nav_projects": "项目", "contact": "联系方式", "get_in_touch": "联系我", "sub": "博士 · 交通工程讲师 · 柬埔寨理工学院", "hero_p1": "我研究金边市民如何步行、呼吸与出行，并在柬埔寨理工学院培养新一代交通工程师。", "hero_p2": "从街道调查、空气质量测量到三维数字孪生，我将数据转化为证据，助力更安全、更清洁的交通。", "see_research": "查看我的研究", "contact_me": "联系我", "about_me": "关于我", "about_p": "我是柬埔寨理工学院交通工程专业的讲师和研究人员。我的工作结合实地测量、统计分析和数字工具，研究金边的街道如何服务于使用者，并探索改善的方法。", "motto": "以证据为本。注重实践。立足柬埔寨。", "view_scholar": "查看我的 Google Scholar", "f1_t": "实地研究", "f1_p": "在金边真实街道上开展问卷调查、传感器监测和交通计数。", "f2_t": "数据与建模", "f2_p": "运用统计、指数和三维数字孪生，将数据转化为决策。", "f3_t": "教学与指导", "f3_p": "本科和硕士课程，学生可在线获取完整教学资料。", "areas": "我的研究领域", "a1_t": "步行友好性", "a1_p": "基于行人偏好的步行指数与人行道研究。", "a2_t": "空气质量", "a2_p": "行人对交通污染的暴露。", "a3_t": "摩托车排放", "a3_p": "实测排放及其对局部空气的影响。", "a4_t": "公共交通", "a4_p": "公交网络分析与线路规划。", "a5_t": "航空运输", "a5_p": "机场容量、航空公司与可持续航空。", "a6_t": "数字孪生", "a6_p": "物流园区和学校区域的三维模型。", "sel_proj": "精选项目", "view_gh": "在 GitHub 查看全部", "ttl1": "实时三维物流园区。", "mini1": "打开模型", "ttl2": "让校园周边街道更安全。", "mini2": "三维模型", "ttl3": "航空运输，逐个模块学习。", "mini3": "打开课程", "c1_p": "数字孪生 · 2026 柬埔寨数字奖参赛作品", "c2_h": "学校安全区数字孪生", "c2_p": "道路安全 · 三维模型与网站", "c3_h": "航空运输规划与管理", "c3_p": "教学 · 课件、练习与测验", "pubs": "论文发表", "all_scholar": "在 Google Scholar 查看全部", "k_journal": "期刊论文", "k_conf": "会议论文", "k_thesis": "学位论文", "read_pdf": "阅读 PDF", "skills": "技能与工具", "s1_t": "统计分析", "s1_p": "回归、方差分析、步行指数", "s2_t": "空气质量测量", "s2_p": "颗粒物、颗粒数浓度、LDSA", "s3_t": "BIM 与三维建模", "s4_t": "编程与数据", "s5_t": "交通规划", "s5_p": "机场容量、公交网络、交通调查", "contact_p": "有研究想法或关于课程的问题吗？欢迎与我联系。", "addr": "柬埔寨理工学院，金边", "l_name": "您的姓名", "l_email": "您的邮箱", "l_msg": "您的留言", "send": "在邮件应用中打开", "note": "将打开您的邮件应用，并预先填好留言。", "foot": "© 2026 PLACK Sokhit 博士 · 柬埔寨理工学院", "err": "请填写姓名、有效的邮箱和留言。", "opening": "正在打开邮件应用…"}};
+  let LANG='en';
+  window.t=k=>(I18N[LANG]&&I18N[LANG][k])||I18N.en[k];
+  function setLang(l){
+    if(!I18N[l]) l='en'; LANG=l;
+    document.documentElement.lang=l;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=t(el.dataset.i18n);});
+    document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l));
+    try{localStorage.setItem('ps_lang',l);}catch(e){}
+  }
+  document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+  let saved=null; try{saved=localStorage.getItem('ps_lang');}catch(e){}
+  const qs=new URLSearchParams(location.search).get('lang');
+  setLang(qs||saved||'en');
+
   const nav=document.getElementById('nav');
   addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>420),{passive:true});
 
@@ -487,8 +524,8 @@ footer a{color:#E6E9EC}
   f.addEventListener('submit',e=>{
     e.preventDefault();
     const n=f.name.value.trim(), m=f.message.value.trim(), em=f.email.value.trim();
-    if(!n||!m||!/^\S+@\S+\.\S+$/.test(em)){note.textContent='Please add your name, a valid email and a message.';note.style.color='#B3261E';return;}
-    note.style.color='';note.textContent='Opening your email app…';
+    if(!n||!m||!/^\S+@\S+\.\S+$/.test(em)){note.textContent=t('err');note.style.color='#B3261E';return;}
+    note.style.color='';note.textContent=t('opening');
     location.href='mailto:sokhit_plack@gsc.itc.edu.kh?subject='+encodeURIComponent('Message from '+n)+'&body='+encodeURIComponent(m+'\n\n'+n+' ('+em+')');
   });
 })();
