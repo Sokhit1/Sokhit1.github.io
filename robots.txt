@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sokhit1.github.io/sitemap.xml
