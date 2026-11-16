@@ -41,7 +41,7 @@
 <style>
 :root{
   --night:#0A1E57; --night-2:#0F2A73; --night-3:#1A3A8F;
-  --tan:#E00025; --tan-dark:#B8001E; --tan-soft:#FDE4E8;
+  --tan:#1F5BE0; --tan-dark:#032EA1; --tan-soft:#E3ECFF;
   --cream:#F3F6FC; --white:#FFFFFF;
   --ink:#1B232B; --ink-2:#5C6670; --line:#DCE3F0; --line-dark:#22408F;
   --font:"Inter", "Noto Sans Khmer", system-ui, sans-serif;
@@ -74,7 +74,7 @@ h2{font-size:clamp(26px,3vw,32px);font-weight:700}
 .nav.solid{position:fixed;background:rgba(10,30,87,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
 .logo{font-weight:800;font-size:22px;color:#fff;text-decoration:none;letter-spacing:-.04em}
-.logo span{color:var(--tan)}
+.logo span{color:#8DB0FF}
 .nav ul{display:flex;gap:6px;list-style:none}
 .nav ul a{color:#E6E9EC;text-decoration:none;font-size:14px;font-weight:500;padding:10px 12px;display:inline-block;position:relative}
 .nav ul a:hover{color:#fff}
@@ -86,7 +86,7 @@ h2{font-size:clamp(26px,3vw,32px);font-weight:700}
 #heroBg{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block}
 .hero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(10,30,87,.85) 0%,rgba(10,30,87,.4) 45%,rgba(10,30,87,0) 100%),linear-gradient(0deg,rgba(10,30,87,.7),transparent 35%)}
 .hero-inner{position:relative;z-index:2}
-.flagband{height:12px;background:linear-gradient(180deg,#032EA1 0 25%,#E00025 25% 75%,#032EA1 75%)}
+.flagband{height:12px;background:linear-gradient(180deg,#032EA1 0 25%,#FFFFFF 25% 75%,#032EA1 75%)}
 .hero-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;width:100%}
 .portrait{justify-self:center;position:relative;width:clamp(240px,30vw,380px);aspect-ratio:1}
 .portrait img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center 20%;display:block;position:relative;z-index:1;background:var(--night-3)}
@@ -95,7 +95,7 @@ h2{font-size:clamp(26px,3vw,32px);font-weight:700}
 .portrait.in{transform:scale(.92)}
 .hero-copy{position:relative;z-index:2;max-width:560px;padding:140px 0 100px}
 .hero h1{font-size:clamp(48px,7vw,84px);font-weight:800;letter-spacing:-.04em;line-height:1}
-.hero h1 .t{color:var(--tan)}
+.hero h1 .t{color:#8DB0FF}
 .hero .sub{font-size:clamp(13px,1.4vw,16px);letter-spacing:.18em;text-transform:uppercase;color:#E6E9EC;margin-top:18px;font-weight:500}
 .hero .p{color:#D3DCF0;margin-top:26px;max-width:32em;font-size:16.5px}
 .hero .p + .p{margin-top:14px}
@@ -162,7 +162,7 @@ h2{font-size:clamp(26px,3vw,32px);font-weight:700}
 .s1 .ttl{color:#fff}.s1 .mini{background:var(--tan);color:#fff}
 .s1 .grid3d{position:absolute;right:-6%;top:22%;width:52%;display:grid;grid-template-columns:repeat(6,1fr);gap:5px;transform:perspective(500px) rotateX(48deg) rotateZ(-28deg)}
 .s1 .grid3d u{aspect-ratio:1;border-radius:3px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);animation:dock 5s infinite;animation-delay:calc(var(--k) * -.43s)}
-@keyframes dock{0%,70%,100%{background:rgba(255,255,255,.08)}78%{background:rgba(48,209,88,.8)}88%{background:rgba(224,0,37,.85)}}
+@keyframes dock{0%,70%,100%{background:rgba(255,255,255,.08)}78%{background:rgba(48,209,88,.8)}88%{background:rgba(141,176,255,.85)}}
 /* preview 2: school zone (light) */
 .s2{background:#ECECE8;color:#1B232B}
 .s2 .ttl{color:#1B232B;max-width:46%}.s2 .mini{background:#1B232B;color:#fff}
@@ -395,7 +395,7 @@ footer a{color:#E6E9EC}
   (function(){
     const cv=document.getElementById('heroBg'); if(!cv) return;
     const ctx=cv.getContext('2d'); let W,H,DPR,roads=[],cars=[],plane,stops=[],t0=performance.now();
-    const TAN='224,0,37', WHITE='230,236,240', GREEN='48,209,88';
+    const TAN='141,176,255', WHITE='230,236,240', GREEN='48,209,88';
     function bez(p,t){const u=1-t;return{x:u*u*u*p[0].x+3*u*u*t*p[1].x+3*u*t*t*p[2].x+t*t*t*p[3].x,y:u*u*u*p[0].y+3*u*u*t*p[1].y+3*u*t*t*p[2].y+t*t*t*p[3].y};}
     function build(){
       const r=cv.getBoundingClientRect(); DPR=Math.min(2,devicePixelRatio||1);
