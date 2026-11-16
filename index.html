@@ -34,326 +34,346 @@
 }
 </script>
 <link rel="icon" href="https://github.com/Sokhit1.png">
+<meta name="theme-color" content="#F5F5F7">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --c-concrete:#EEF0EC;   /* sidewalk concrete: page base */
-  --c-white:#FFFFFF;      /* surface */
-  --c-asphalt:#1E2A33;    /* ink / dark bands */
-  --c-asphalt-2:#2B3B46;
-  --c-muted:#56636C;      /* muted text */
-  --c-line:#D3D8D2;
-  --c-mekong:#1F5E7A;     /* links, secondary */
-  --c-mekong-dark:#164659;
-  --c-marking:#E9B949;    /* lane-marking yellow: accent fills only */
-  --font-display:"Archivo", "Arial Narrow", sans-serif;
-  --font-body:"Public Sans", "Noto Sans Khmer", system-ui, sans-serif;
-  --step--1:.875rem; --step-0:1.0625rem; --step-1:1.25rem; --step-2:1.563rem; --step-3:1.953rem;
-  --step-hero:clamp(2.6rem, 1.4rem + 5vw, 5rem);
-  --s-2:8px; --s-3:12px; --s-4:16px; --s-6:24px; --s-8:32px; --s-12:48px; --s-16:64px; --s-24:96px;
-  --r-sm:4px; --r-md:10px;
-  --max:1160px;
+  --bg:#F5F5F7; --tile:#FFFFFF; --ink:#1D1D1F; --ink-2:#6E6E73; --line:#D2D2D7;
+  --blue:#0071E3; --blue-hover:#0077ED; --link:#0066CC;
+  --dark:#000000; --dark-tile:#161617; --dark-ink:#F5F5F7; --dark-ink-2:#A1A1A6;
+  --green:#30D158; --amber:#FFB340;
+  --font:-apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Noto Sans Khmer", system-ui, sans-serif;
+  --r-tile:28px; --r-pill:980px;
+  --ease:cubic-bezier(.22,.8,.2,1);
+  --max:1024px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
-body{font-family:var(--font-body);font-size:var(--step-0);line-height:1.65;color:var(--c-asphalt);background:var(--c-concrete)}
-a{color:var(--c-mekong);text-underline-offset:3px}
-a:hover{color:var(--c-mekong-dark)}
-:focus-visible{outline:3px solid var(--c-marking);outline-offset:3px;border-radius:2px}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,4vw,40px)}
-h1,h2,h3{font-family:var(--font-display);line-height:1.1;font-weight:700}
-h2{font-size:var(--step-3);font-stretch:112%;margin-bottom:var(--s-8)}
-h3{font-size:var(--step-1);font-weight:650;line-height:1.3}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);font-size:17px;line-height:1.47;letter-spacing:-.022em;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:3px solid rgba(0,113,227,.6);outline-offset:3px;border-radius:8px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+h1,h2,h3{letter-spacing:-.035em;line-height:1.07;font-weight:700}
 
-/* Header */
-header.top{background:var(--c-asphalt);color:#fff}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:var(--s-6);min-height:68px}
-.brand{font-family:var(--font-display);font-weight:750;font-stretch:115%;font-size:1.05rem;color:#fff;text-decoration:none;letter-spacing:.01em}
-.nav ul{list-style:none;display:flex;gap:var(--s-2);flex-wrap:wrap}
-.nav ul a{display:inline-flex;align-items:center;min-height:44px;padding:0 var(--s-3);color:#DCE3E8;text-decoration:none;font-weight:500;font-size:.95rem;border-radius:var(--r-sm)}
-.nav ul a:hover{color:#fff;background:var(--c-asphalt-2)}
-@media (max-width:760px){.nav ul{display:none}}
+/* Frosted menu bar */
+.bar{position:sticky;top:0;z-index:50;background:rgba(245,245,247,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:52px}
+.bar .name{font-weight:600;font-size:15px;color:var(--ink);letter-spacing:-.01em}
+.bar nav{display:flex;gap:4px}
+.bar nav a{font-size:13px;color:#1D1D1F;opacity:.8;padding:8px 10px;border-radius:8px;min-height:44px;display:inline-flex;align-items:center}
+.bar nav a:hover{opacity:1;text-decoration:none}
+@media (max-width:700px){.bar nav{display:none}}
+
+/* Pills */
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 22px;border-radius:var(--r-pill);font-size:17px;font-weight:500;transition:background .25s var(--ease), transform .25s var(--ease)}
+.pill:hover{text-decoration:none}
+.pill:active{transform:scale(.97)}
+.pill-blue{background:var(--blue);color:#fff}
+.pill-blue:hover{background:var(--blue-hover)}
+.pill-line{color:var(--blue);border:1px solid var(--blue)}
+.pill-line:hover{background:rgba(0,113,227,.06)}
+.pill-light{background:#fff;color:#1D1D1F}
+.pill-light:hover{background:#E8E8ED}
 
 /* Hero */
-.hero{background:var(--c-asphalt);color:#fff;padding:var(--s-16) 0 0}
-.hero-grid{display:grid;grid-template-columns:1fr auto;gap:var(--s-12);align-items:end}
-.hero h1{font-size:var(--step-hero);font-stretch:118%;font-weight:800;letter-spacing:-.01em;line-height:1}
-.hero .role{font-size:var(--step-1);color:#DCE3E8;margin-top:var(--s-6);max-width:44ch}
-.hero .role strong{color:#fff;font-weight:600}
-.links{display:flex;flex-wrap:wrap;gap:var(--s-3);margin-top:var(--s-8);padding-bottom:var(--s-12)}
-.btn{display:inline-flex;align-items:center;gap:var(--s-2);min-height:46px;padding:0 var(--s-6);border-radius:var(--r-sm);font-weight:600;text-decoration:none;font-size:.97rem;transition:background .2s, color .2s}
-.btn-primary{background:var(--c-marking);color:var(--c-asphalt)}
-.btn-primary:hover{background:#F3CC69;color:var(--c-asphalt)}
-.btn-ghost{color:#fff;border:1.5px solid #5D6E79}
-.btn-ghost:hover{border-color:#fff;color:#fff;background:var(--c-asphalt-2)}
-.portrait{width:clamp(150px,22vw,250px);height:auto;aspect-ratio:1;border-radius:50%;object-fit:cover;border:6px solid var(--c-asphalt-2);margin-bottom:var(--s-12);background:var(--c-asphalt-2)}
-@media (max-width:760px){.hero-grid{grid-template-columns:1fr}.portrait{order:-1;margin-bottom:0;width:130px}}
+.hero{text-align:center;padding:96px 0 72px;overflow:hidden}
+.avatar{width:132px;height:132px;border-radius:50%;object-fit:cover;margin:0 auto 28px;display:block;box-shadow:0 12px 40px rgba(0,0,0,.14);background:#E8E8ED}
+.hero .kicker{font-size:21px;font-weight:600;color:var(--ink-2);letter-spacing:-.02em}
+.hero h1{font-size:clamp(48px,9vw,96px);margin-top:8px;letter-spacing:-.045em}
+.hero .lead{font-size:clamp(21px,2.6vw,28px);color:var(--ink);max-width:24em;margin:20px auto 0;line-height:1.25;letter-spacing:-.03em;font-weight:500}
+.hero .lead span{color:var(--ink-2)}
+.hero .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:36px}
 
-/* Memorable element: the zebra crossing */
-.zebra{height:72px;background:
-  repeating-linear-gradient(90deg,#F4F4F0 0 46px,transparent 46px 92px) center/100% 56px no-repeat,
-  var(--c-asphalt-2)}
+/* Load animation */
+.in{opacity:0;transform:translateY(24px) scale(.98);filter:blur(8px);animation:rise 1s var(--ease) forwards;animation-delay:calc(var(--d,0) * 110ms + 120ms)}
+@keyframes rise{to{opacity:1;transform:none;filter:none}}
 
-/* Sections */
-section{padding:var(--s-24) 0}
-section.alt{background:var(--c-white)}
-.intro{font-size:var(--step-1);max-width:62ch;color:var(--c-asphalt)}
-.intro + .intro{margin-top:var(--s-4)}
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(48px) scale(.97);transition:opacity .9s var(--ease), transform .9s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
+.reveal.on{opacity:1;transform:none}
 
-.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s-8) var(--s-12);margin-top:var(--s-12)}
-.area{border-top:3px solid var(--c-asphalt);padding-top:var(--s-4)}
-.area p{color:var(--c-muted);margin-top:var(--s-2);max-width:48ch}
-@media (max-width:760px){.areas{grid-template-columns:1fr}}
+/* Statement (words brighten as you scroll) */
+.statement{padding:80px 0 120px}
+.statement p{font-size:clamp(30px,5vw,56px);font-weight:700;letter-spacing:-.04em;line-height:1.12;max-width:17em}
+.statement .w{color:#C7C7CC;transition:color .4s var(--ease)}
+.statement .w.lit{color:var(--ink)}
 
-/* Publications */
-.pub-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:var(--s-4);margin-bottom:var(--s-8)}
-.pub-head h2{margin-bottom:0}
-.pub-head p a{font-weight:600}
-.pub-group{margin-top:var(--s-12)}
-.pub-group:first-of-type{margin-top:0}
-.pub-group > h3{font-size:var(--step-0);color:var(--c-muted);font-family:var(--font-body);font-weight:600;margin-bottom:var(--s-4)}
-.pubs{list-style:none;border-top:1px solid var(--c-line)}
-.pub{display:grid;grid-template-columns:72px 1fr;gap:var(--s-6);padding:var(--s-6) 0;border-bottom:1px solid var(--c-line)}
-.pub .yr{font-family:var(--font-display);font-weight:700;font-stretch:112%;font-size:var(--step-1);color:var(--c-mekong)}
-.pub .title{font-weight:600;font-size:1.08rem;line-height:1.4}
-.pub .auth{color:var(--c-muted);margin-top:4px}
-.pub .auth b{color:var(--c-asphalt);font-weight:600}
-.pub .venue{font-style:italic;color:var(--c-muted)}
-.pub .act{margin-top:var(--s-2);font-size:.95rem;font-weight:600}
-@media (max-width:560px){.pub{grid-template-columns:1fr;gap:4px}}
+/* Section heads */
+.sec{padding:40px 0 100px}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.sec-head h2{font-size:clamp(36px,5.5vw,56px)}
+.sec-head p{color:var(--ink-2);font-size:19px}
 
-/* Projects */
-.proj{display:grid;grid-template-columns:1fr 1.4fr;gap:var(--s-12);padding:var(--s-8) 0;border-top:1px solid var(--c-line)}
-.proj:last-child{border-bottom:1px solid var(--c-line)}
-.proj p{color:var(--c-muted);max-width:60ch}
-.proj .act{margin-top:var(--s-3);display:flex;gap:var(--s-4);flex-wrap:wrap;font-weight:600}
-.tag{display:inline-block;font-size:var(--step--1);color:var(--c-muted);margin-top:var(--s-2)}
-@media (max-width:760px){.proj{grid-template-columns:1fr;gap:var(--s-3)}}
+/* Bento tiles */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
+.tile{background:var(--tile);border-radius:var(--r-tile);padding:36px;position:relative;overflow:hidden;transition:transform .5s var(--ease), box-shadow .5s var(--ease)}
+.tile:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 22px 50px rgba(0,0,0,.08)}
+.span-3{grid-column:span 3}.span-2{grid-column:span 2}.span-4{grid-column:span 4}.span-6{grid-column:span 6}
+@media (max-width:820px){.bento{grid-template-columns:1fr}.span-3,.span-2,.span-4,.span-6{grid-column:auto}}
+.tile .ico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;margin-bottom:22px;color:#fff}
+.tile h3{font-size:28px;letter-spacing:-.03em}
+.tile p{color:var(--ink-2);margin-top:10px;font-size:17px}
+.ico.b{background:linear-gradient(135deg,#0A84FF,#5E5CE6)}
+.ico.g{background:linear-gradient(135deg,#30D158,#00A86B)}
+.ico.o{background:linear-gradient(135deg,#FF9F0A,#FF6B00)}
+.ico.p{background:linear-gradient(135deg,#BF5AF2,#5E5CE6)}
 
-/* Teaching band */
-.teach{background:var(--c-asphalt);color:#fff}
-.teach h2{color:#fff}
-.teach-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:var(--s-12);align-items:start}
-.course{background:var(--c-asphalt-2);border-radius:var(--r-md);padding:var(--s-8)}
-.course p{color:#C9D3DA;margin-top:var(--s-3)}
-.course ol{margin:var(--s-4) 0 0 1.2em;color:#DCE3E8;columns:2;column-gap:var(--s-8)}
-.course li{margin-bottom:4px;break-inside:avoid}
-.teach .btn{margin-top:var(--s-6)}
-.other-teach p{color:#C9D3DA}
-.other-teach ul{list-style:none;margin-top:var(--s-4)}
-.other-teach li{padding:var(--s-3) 0;border-bottom:1px solid #3B4D59;color:#fff}
-@media (max-width:860px){.teach-grid{grid-template-columns:1fr}.course ol{columns:1}}
+/* Numbers band */
+.numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px}
+.num{background:var(--tile);border-radius:var(--r-tile);padding:32px 36px}
+.num b{display:block;font-size:clamp(56px,8vw,80px);letter-spacing:-.05em;line-height:1;background:linear-gradient(135deg,#0A84FF,#5E5CE6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.num span{color:var(--ink-2);font-size:17px;display:block;margin-top:8px}
+@media (max-width:820px){.numbers{grid-template-columns:1fr}}
 
-/* Education + contact */
-.two{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-16)}
-.timeline{list-style:none}
-.timeline li{padding:var(--s-4) 0;border-bottom:1px solid var(--c-line)}
-.timeline .when{font-weight:600;color:var(--c-mekong)}
-.contact p{max-width:46ch;color:var(--c-muted)}
-.contact dl{margin-top:var(--s-6)}
-.contact dt{font-size:var(--step--1);color:var(--c-muted);margin-top:var(--s-4)}
-.contact dd{font-weight:600}
-@media (max-width:760px){.two{grid-template-columns:1fr;gap:var(--s-12)}}
+/* Publications list */
+.list{background:var(--tile);border-radius:var(--r-tile);padding:8px 0;overflow:hidden}
+.group{padding:20px 36px 4px;font-size:13px;font-weight:600;color:var(--ink-2);letter-spacing:0;text-transform:none}
+.row{display:grid;grid-template-columns:64px 1fr 24px;gap:16px;align-items:center;padding:18px 36px;color:var(--ink);position:relative;transition:background .25s var(--ease)}
+.row + .row::before{content:"";position:absolute;top:0;left:116px;right:0;border-top:1px solid #E5E5EA}
+.row:hover{background:#F5F5F7;text-decoration:none}
+.row .yr{font-weight:700;font-size:20px;color:var(--blue);letter-spacing:-.03em}
+.row .t{font-weight:600;font-size:17px;line-height:1.35}
+.row .m{color:var(--ink-2);font-size:15px;margin-top:3px;line-height:1.4}
+.row .m b{color:var(--ink);font-weight:600}
+.row .chev{color:#C7C7CC;font-size:22px;justify-self:end}
+.row:hover .chev{color:var(--ink-2)}
+@media (max-width:600px){.row{grid-template-columns:1fr 18px;padding:16px 22px}.row .yr{grid-column:1/-1;font-size:15px}.row+.row::before{left:22px}.group{padding:18px 22px 4px}}
 
-footer{background:var(--c-asphalt);color:#AEBAC2;font-size:var(--step--1);padding:var(--s-8) 0}
-footer a{color:#DCE3E8}
+/* Dark project hero tile */
+.dark-tile{background:radial-gradient(120% 120% at 80% 0%,#1C3D5A 0%,#0B0B0C 55%);color:var(--dark-ink);border-radius:var(--r-tile);padding:56px;position:relative;overflow:hidden;min-height:440px;display:flex;flex-direction:column;justify-content:flex-end}
+.dark-tile .eyebrow{color:var(--amber);font-weight:600;font-size:17px}
+.dark-tile h3{font-size:clamp(36px,5vw,56px);margin-top:6px}
+.dark-tile p{color:var(--dark-ink-2);max-width:30em;margin-top:12px;font-size:19px}
+.dark-tile .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.dark-tile .pill-line{color:#fff;border-color:rgba(255,255,255,.5)}
+.dark-tile .pill-line:hover{background:rgba(255,255,255,.08)}
+/* animated grid of "warehouse docks" */
+.docks{position:absolute;right:-40px;top:40px;display:grid;grid-template-columns:repeat(6,46px);gap:10px;transform:rotate(-12deg);opacity:.9}
+.docks i{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);animation:blink 4.8s infinite;animation-delay:calc(var(--k) * -0.37s)}
+@keyframes blink{0%,70%,100%{background:rgba(255,255,255,.06)}78%{background:rgba(48,209,88,.75)}88%{background:rgba(10,132,255,.6)}}
+@media (max-width:820px){.dark-tile{padding:32px;min-height:420px}.docks{right:-90px;top:20px}}
+
+/* Teaching */
+.course{background:var(--tile);border-radius:var(--r-tile);padding:44px;display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:center}
+.course h3{font-size:clamp(30px,4vw,40px)}
+.course p{color:var(--ink-2);margin-top:12px}
+.course .cta{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}
+.mods{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;counter-reset:m}
+.mods li{list-style:none;background:var(--bg);border-radius:16px;padding:14px 16px;font-size:15px;font-weight:500;display:flex;gap:10px;align-items:center}
+.mods li::before{counter-increment:m;content:counter(m);width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;font-weight:600;display:grid;place-items:center;flex:none}
+@media (max-width:820px){.course{grid-template-columns:1fr;padding:30px}}
+
+/* Contact */
+.contact{background:var(--tile);border-radius:var(--r-tile);padding:56px;text-align:center}
+.contact h2{font-size:clamp(36px,5.5vw,56px)}
+.contact p{color:var(--ink-2);font-size:19px;max-width:30em;margin:14px auto 0}
+.contact .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.contact .addr{margin-top:22px;font-size:15px;color:var(--ink-2)}
+
+footer{padding:36px 0 48px;color:var(--ink-2);font-size:12px;letter-spacing:-.01em}
+footer .wrap{border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .in,.reveal{opacity:1!important;transform:none!important;filter:none!important;animation:none!important;transition:none!important}
+  .docks i{animation:none}
+  .statement .w{color:var(--ink)}
+  .tile:hover{transform:none}
+}
 </style>
 </head>
 <body>
 
-<header class="top">
-  <nav class="wrap nav" aria-label="Main">
-    <a class="brand" href="#">PLACK Sokhit</a>
-    <ul>
-      <li><a href="#research">Research</a></li>
-      <li><a href="#publications">Publications</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#teaching">Teaching</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+<header class="bar">
+  <div class="wrap">
+    <a class="name" href="#top">PLACK Sokhit</a>
+    <nav aria-label="Main">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#projects">Projects</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
 </header>
 
-<main>
-<div class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <h1>Dr. PLACK Sokhit</h1>
-      <p class="role"><strong>Lecturer in Transport Engineering</strong> at the Institute of Technology of Cambodia. I study how people walk, breathe and travel in Phnom Penh, and build tools that help plan safer, cleaner transport.</p>
-      <div class="links">
-        <a class="btn btn-primary" href="#publications">Read my publications</a>
-        <a class="btn btn-ghost" href="https://scholar.google.com/citations?user=O5WWAx0AAAAJ">Google Scholar</a>
-        <a class="btn btn-ghost" href="https://github.com/Sokhit1">GitHub</a>
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <img class="avatar in" style="--d:0" src="https://github.com/Sokhit1.png?size=400" alt="Portrait of Dr. PLACK Sokhit" width="132" height="132">
+      <p class="kicker in" style="--d:1">Lecturer in Transport Engineering · ITC</p>
+      <h1 class="in" style="--d:2">Dr. PLACK Sokhit</h1>
+      <p class="lead in" style="--d:3">Safer streets. Cleaner air. <span>Better ways to move around Phnom Penh.</span></p>
+      <div class="cta in" style="--d:4">
+        <a class="pill pill-blue" href="#publications">See my research</a>
+        <a class="pill pill-line" href="https://scholar.google.com/citations?user=O5WWAx0AAAAJ">Google Scholar</a>
       </div>
     </div>
-    <img class="portrait" src="https://github.com/Sokhit1.png?size=500" alt="Portrait of Dr. PLACK Sokhit" width="250" height="250">
-  </div>
-  <div class="zebra" role="img" aria-label="Zebra crossing stripes"></div>
-</div>
+  </section>
 
-<section id="research">
-  <div class="wrap">
-    <h2>Research</h2>
-    <p class="intro">Phnom Penh is growing fast, and most trips are made on foot or by motorcycle. My work measures what that means for pedestrians and air quality, and turns the results into evidence for street design and transport policy.</p>
-    <div class="areas">
-      <div class="area">
-        <h3>Walkability and pedestrians</h3>
-        <p>Walkability indices weighted by what local pedestrians actually value, and the quality and use of new sidewalks in Phnom Penh.</p>
+  <section class="statement" aria-label="About">
+    <div class="wrap">
+      <p id="statement">Most trips in Phnom Penh are made on foot or by motorcycle. I measure what that means for the people walking and the air they breathe, and turn it into evidence for better streets.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="research">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>Research</h2><p>Four areas, one city.</p></div>
+      <div class="bento">
+        <article class="tile span-3 reveal" style="--d:0">
+          <div class="ico b" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="2"/><path d="M10 21l2-6 3 3v3M8 12l3-3 3 2 3 1M11 9l-1 6-3 6"/></svg></div>
+          <h3>Walkability</h3>
+          <p>Walkability indices weighted by what local pedestrians value, and the quality of new sidewalks.</p>
+        </article>
+        <article class="tile span-3 reveal" style="--d:1">
+          <div class="ico g" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h11a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h8"/></svg></div>
+          <h3>Traffic and air quality</h3>
+          <p>How traffic mix shapes pedestrian exposure to fine particles, and what motorcycle emissions add.</p>
+        </article>
+        <article class="tile span-2 reveal" style="--d:2">
+          <div class="ico o" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 11h16M8 21l1-4M16 21l-1-4"/><circle cx="8" cy="14" r=".5"/><circle cx="16" cy="14" r=".5"/></svg></div>
+          <h3>Public transport</h3>
+          <p>Route planning for Phnom Penh's city buses.</p>
+        </article>
+        <article class="tile span-4 reveal" style="--d:3">
+          <div class="ico p" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16l20-6-3-2-6 2-5-6H6l3 7-5 2-2-2z"/><path d="M3 21h18"/></svg></div>
+          <h3>Air transport and digital twins</h3>
+          <p>Airport capacity, airline planning and sustainable aviation, plus 3D digital twins of logistics parks and school zones.</p>
+        </article>
       </div>
-      <div class="area">
-        <h3>Traffic and air quality</h3>
-        <p>How traffic composition shapes pedestrian exposure to fine particles, and what motorcycle emissions contribute at street and parking level.</p>
-      </div>
-      <div class="area">
-        <h3>Public transport</h3>
-        <p>Network analysis and route planning for Phnom Penh's city bus system.</p>
-      </div>
-      <div class="area">
-        <h3>Air transport and digital twins</h3>
-        <p>Airport capacity, airline planning and sustainable aviation, and 3D digital twins of logistics parks and school zones linked to live data.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="publications" class="alt">
-  <div class="wrap">
-    <div class="pub-head">
-      <h2>Publications</h2>
-      <p>Also on <a href="https://scholar.google.com/citations?user=O5WWAx0AAAAJ">Google Scholar</a> and <a href="https://www.researchgate.net/scientific-contributions/Sokhit-Plack-2335930688">ResearchGate</a></p>
-    </div>
-
-    <div class="pub-group">
-      <h3>Journal articles</h3>
-      <ol class="pubs">
-        <li class="pub"><span class="yr">2026</span><div>
-          <p class="title">Assessing the impact of motorcycle emissions on urban air quality: A case study at the Institute of Technology of Cambodia</p>
-          <p class="auth">Phiny, L., Phun, V.K., Saum, N., <b>Plack, S.</b> · <span class="venue">Techno-Science Research Journal</span>, 14(1), 24–31</p>
-          <p class="act"><a href="https://techno-srj.itc.edu.kh/public/journal/document/%5B4%5D.pdf">Read the PDF</a></p>
-        </div></li>
-        <li class="pub"><span class="yr">2025</span><div>
-          <p class="title">Weighting approach for assessing walkability index of urban streets: Case study of Phnom Penh, Cambodia</p>
-          <p class="auth"><b>Plack, S.</b>, Phun, V.K. · <span class="venue">Journal of the Eastern Asia Society for Transportation Studies</span>, 16, PP3982</p>
-          <p class="act"><a href="https://www.jstage.jst.go.jp/article/easts/16/0/16_PP3982/_article/-char/en">View on J-STAGE</a></p>
-        </div></li>
-        <li class="pub"><span class="yr">2025</span><div>
-          <p class="title">Assessing the impact of road traffic composition on pedestrian exposure to air pollution in urban area: Evidence from Phnom Penh streets, Cambodia</p>
-          <p class="auth"><b>Plack, S.</b>, Phun, V.K. · <span class="venue">Journal of the Eastern Asia Society for Transportation Studies</span>, 16, PP4187</p>
-          <p class="act"><a href="https://www.jstage.jst.go.jp/article/easts/16/0/16_PP4187/_article/-char/en">View on J-STAGE</a></p>
-        </div></li>
-        <li class="pub"><span class="yr">2024</span><div>
-          <p class="title">Walkability and importance assessment of pedestrian facilities in Phnom Penh City</p>
-          <p class="auth"><b>Plack, S.</b>, Phun, V.K., Yang, P., Taing, K. · <span class="venue">Techno-Science Research Journal</span>, 12(1), 31–45</p>
-          <p class="act"><a href="https://doi.org/10.64702/Techno-SRJ.2024.V12.I1.06">Open via DOI</a></p>
-        </div></li>
-      </ol>
-    </div>
-
-    <div class="pub-group">
-      <h3>Conference papers</h3>
-      <ol class="pubs">
-        <li class="pub"><span class="yr">2025</span><div>
-          <p class="title">Factors affecting air quality at urban parking area: Case study of motorcycle emissions inside Institute of Technology of Cambodia (ITC)</p>
-          <p class="auth">Phiny, L., Phun, V.K., Saum, N., <b>Plack, S.</b> · <span class="venue">Proceedings of the Eastern Asia Society for Transportation Studies</span>, 15</p>
-          <p class="act"><a href="https://easts.info/on-line/proceedings/vol.15/pdf/F_PP3891.pdf">Read the PDF</a></p>
-        </div></li>
-        <li class="pub"><span class="yr">2025</span><div>
-          <p class="title">Bus route planning using Dijkstra algorithm: A case study of the public bus system in Phnom Penh</p>
-          <p class="auth">Saum, N., <b>Plack, S.</b>, Srorn, P., Vin, D., Ek, V.P. · <span class="venue">Proceedings of the Eastern Asia Society for Transportation Studies</span>, 15</p>
-          <p class="act"><a href="https://www.researchgate.net/publication/399423475_Bus_Route_Planning_using_Dijkstra_Algorithm_A_Case_Study_of_the_Public_Bus_System_in_Phnom_Penh">View on ResearchGate</a></p>
-        </div></li>
-      </ol>
-    </div>
-
-    <div class="pub-group">
-      <h3>Thesis</h3>
-      <ol class="pubs">
-        <li class="pub"><span class="yr">2023</span><div>
-          <p class="title">Pedestrian mode of transport in Phnom Penh City</p>
-          <p class="auth"><b>Plack, S.</b> · <span class="venue">Master's thesis, Transport and Infrastructure Engineering, Institute of Technology of Cambodia</span></p>
-        </div></li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<section id="projects">
-  <div class="wrap">
-    <h2>Projects</h2>
-    <div class="proj">
-      <div><h3>Smart Warehouse Twin</h3><span class="tag">Digital twin · Cambodia Digital Awards 2026 entry</span></div>
-      <div>
-        <p>A live 3D digital twin of a logistics park in Phnom Penh: dock doors, a cold store, trucks and alarms update in real time, in Khmer and English.</p>
-        <div class="act"><a href="https://smart-warehouse-twin.netlify.app">Open the live twin</a><a href="https://github.com/Sokhit1/smart-warehouse-twin">Source code</a></div>
+      <div class="numbers">
+        <div class="num reveal" style="--d:0"><b data-count="6">0</b><span>Peer-reviewed papers</span></div>
+        <div class="num reveal" style="--d:1"><b data-count="8">0</b><span>Course modules online</span></div>
+        <div class="num reveal" style="--d:2"><b data-count="3">0</b><span>Digital projects</span></div>
       </div>
     </div>
-    <div class="proj">
-      <div><h3>School Safety Zone Digital Twin</h3><span class="tag">Road safety · 3D model</span></div>
-      <div><p>A 3D model and website for safer streets around schools in Phnom Penh, used to test crossings, signs and traffic calming before they are built.</p></div>
-    </div>
-    <div class="proj">
-      <div><h3>MotoService Cambodia</h3><span class="tag">Mobility services · web apps</span></div>
-      <div><p>Two connected apps for motorcycle repair shops and their customers, covering jobs, parts, invoices, bookings and alerts.</p></div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="teaching" class="teach">
-  <div class="wrap">
-    <h2>Teaching</h2>
-    <div class="teach-grid">
-      <div class="course">
-        <h3>Air Transport Planning and Management</h3>
-        <p>Undergraduate and master's course in Transport Engineering. Every module has lecture slides, worked examples, a classroom exercise and a review quiz.</p>
-        <ol>
-          <li>Air transport systems</li>
-          <li>Demand and forecasting</li>
-          <li>Airport master planning</li>
-          <li>Capacity and level of service</li>
-          <li>Airline planning</li>
-          <li>Airline operations and finance</li>
-          <li>Safety and security</li>
-          <li>Sustainable aviation</li>
+  <section class="sec" id="publications">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>Publications</h2><p>Also on <a href="https://scholar.google.com/citations?user=O5WWAx0AAAAJ">Google Scholar</a> and <a href="https://www.researchgate.net/scientific-contributions/Sokhit-Plack-2335930688">ResearchGate</a></p></div>
+      <div class="list reveal">
+        <p class="group">Journal articles</p>
+        <a class="row" href="https://techno-srj.itc.edu.kh/public/journal/document/%5B4%5D.pdf"><span class="yr">2026</span><span><span class="t">Assessing the impact of motorcycle emissions on urban air quality: A case study at the Institute of Technology of Cambodia</span><span class="m" style="display:block">Phiny, L., Phun, V.K., Saum, N., <b>Plack, S.</b> · Techno-Science Research Journal 14(1), 24–31</span></span><span class="chev" aria-hidden="true">›</span></a>
+        <a class="row" href="https://www.jstage.jst.go.jp/article/easts/16/0/16_PP3982/_article/-char/en"><span class="yr">2025</span><span><span class="t">Weighting approach for assessing walkability index of urban streets: Case study of Phnom Penh, Cambodia</span><span class="m" style="display:block"><b>Plack, S.</b>, Phun, V.K. · Journal of the Eastern Asia Society for Transportation Studies 16, PP3982</span></span><span class="chev" aria-hidden="true">›</span></a>
+        <a class="row" href="https://www.jstage.jst.go.jp/article/easts/16/0/16_PP4187/_article/-char/en"><span class="yr">2025</span><span><span class="t">Assessing the impact of road traffic composition on pedestrian exposure to air pollution in urban area: Evidence from Phnom Penh streets, Cambodia</span><span class="m" style="display:block"><b>Plack, S.</b>, Phun, V.K. · Journal of the Eastern Asia Society for Transportation Studies 16, PP4187</span></span><span class="chev" aria-hidden="true">›</span></a>
+        <a class="row" href="https://doi.org/10.64702/Techno-SRJ.2024.V12.I1.06"><span class="yr">2024</span><span><span class="t">Walkability and importance assessment of pedestrian facilities in Phnom Penh City</span><span class="m" style="display:block"><b>Plack, S.</b>, Phun, V.K., Yang, P., Taing, K. · Techno-Science Research Journal 12(1), 31–45</span></span><span class="chev" aria-hidden="true">›</span></a>
+        <p class="group">Conference papers</p>
+        <a class="row" href="https://easts.info/on-line/proceedings/vol.15/pdf/F_PP3891.pdf"><span class="yr">2025</span><span><span class="t">Factors affecting air quality at urban parking area: Case study of motorcycle emissions inside Institute of Technology of Cambodia (ITC)</span><span class="m" style="display:block">Phiny, L., Phun, V.K., Saum, N., <b>Plack, S.</b> · Proceedings of the EASTS 15</span></span><span class="chev" aria-hidden="true">›</span></a>
+        <a class="row" href="https://www.researchgate.net/publication/399423475_Bus_Route_Planning_using_Dijkstra_Algorithm_A_Case_Study_of_the_Public_Bus_System_in_Phnom_Penh"><span class="yr">2025</span><span><span class="t">Bus route planning using Dijkstra algorithm: A case study of the public bus system in Phnom Penh</span><span class="m" style="display:block">Saum, N., <b>Plack, S.</b>, Srorn, P., Vin, D., Ek, V.P. · Proceedings of the EASTS 15</span></span><span class="chev" aria-hidden="true">›</span></a>
+        <p class="group">Thesis</p>
+        <div class="row"><span class="yr">2023</span><span><span class="t">Pedestrian mode of transport in Phnom Penh City</span><span class="m" style="display:block"><b>Plack, S.</b> · Master's thesis, Transport and Infrastructure Engineering, Institute of Technology of Cambodia</span></span><span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>Projects</h2><p>Models you can open and explore.</p></div>
+      <div class="dark-tile reveal">
+        <div class="docks" aria-hidden="true"></div>
+        <p class="eyebrow">Cambodia Digital Awards 2026 entry</p>
+        <h3>Smart Warehouse Twin</h3>
+        <p>A live 3D digital twin of a logistics park in Phnom Penh. Dock doors, the cold store, trucks and alarms update in real time, in Khmer and English.</p>
+        <div class="cta">
+          <a class="pill pill-light" href="https://smart-warehouse-twin.netlify.app">Open the live twin</a>
+          <a class="pill pill-line" href="https://github.com/Sokhit1/smart-warehouse-twin">Source code</a>
+        </div>
+      </div>
+      <div class="bento" style="margin-top:20px">
+        <article class="tile span-3 reveal" style="--d:0">
+          <div class="ico o" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12M21 7l-9 5-9-5"/></svg></div>
+          <h3>School Safety Zone Twin</h3>
+          <p>A 3D model and website for safer streets around schools, used to test crossings, signs and traffic calming before they are built.</p>
+        </article>
+        <article class="tile span-3 reveal" style="--d:1">
+          <div class="ico b" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17l4-7h5l3 7M10 10l-2-4H5M15 10l1-3h3"/></svg></div>
+          <h3>MotoService Cambodia</h3>
+          <p>Two connected apps for motorcycle repair shops and their customers: jobs, parts, invoices, bookings and alerts.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="teaching">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2>Teaching</h2><p>Undergraduate and master's level.</p></div>
+      <div class="course reveal">
+        <div>
+          <h3>Air Transport Planning and Management</h3>
+          <p>Every module comes with lecture slides, worked examples, a classroom exercise and a review quiz.</p>
+          <div class="cta"><a class="pill pill-blue" href="https://github.com/Sokhit1/PLACK-Sokhit/tree/air-transport-planning/air-transport-planning">Open the course materials</a></div>
+          <p style="margin-top:22px;font-size:15px">Also teaching short courses in BIM with Autodesk Revit and data analysis for engineers.</p>
+        </div>
+        <ol class="mods">
+          <li>Air transport systems</li><li>Demand and forecasting</li>
+          <li>Airport master planning</li><li>Capacity and service</li>
+          <li>Airline planning</li><li>Operations and finance</li>
+          <li>Safety and security</li><li>Sustainable aviation</li>
         </ol>
-        <a class="btn btn-primary" href="https://github.com/Sokhit1/PLACK-Sokhit/tree/air-transport-planning/air-transport-planning">Open the course materials</a>
-      </div>
-      <div class="other-teach">
-        <p>Short courses for engineers and students:</p>
-        <ul>
-          <li>BIM with Autodesk Revit</li>
-          <li>Data analysis for engineers</li>
-        </ul>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="contact" class="alt">
-  <div class="wrap two">
-    <div>
-      <h2>Education</h2>
-      <ul class="timeline">
-        <li><span class="when">Doctoral studies</span><br>Transport Engineering, Institute of Technology of Cambodia</li>
-        <li><span class="when">2023 · Master's degree</span><br>Transport and Infrastructure Engineering, Institute of Technology of Cambodia</li>
-      </ul>
+  <section class="sec" id="contact">
+    <div class="wrap">
+      <div class="contact reveal">
+        <h2>Let's work together.</h2>
+        <p>Questions from students and research collaboration on transport, walkability and air quality in Cambodia are welcome.</p>
+        <div class="cta">
+          <a class="pill pill-blue" href="mailto:sokhit_plack@gsc.itc.edu.kh">Email me</a>
+          <a class="pill pill-line" href="https://github.com/Sokhit1">GitHub</a>
+        </div>
+        <p class="addr">Institute of Technology of Cambodia · Russian Federation Blvd., Phnom Penh</p>
+      </div>
     </div>
-    <div class="contact">
-      <h2>Contact</h2>
-      <p>I welcome questions from students and collaboration on transport, walkability and air quality research in Cambodia.</p>
-      <dl>
-        <dt>Email</dt><dd><a href="mailto:sokhit_plack@gsc.itc.edu.kh">sokhit_plack@gsc.itc.edu.kh</a></dd>
-        <dt>Address</dt><dd>Institute of Technology of Cambodia, Russian Federation Blvd., Phnom Penh</dd>
-      </dl>
-    </div>
-  </div>
-</section>
+  </section>
 </main>
 
 <footer>
-  <div class="wrap">© 2026 Dr. PLACK Sokhit · <a href="https://github.com/Sokhit1">GitHub</a> · <a href="https://scholar.google.com/citations?user=O5WWAx0AAAAJ">Google Scholar</a></div>
+  <div class="wrap"><span>© 2026 Dr. PLACK Sokhit</span><span>Doctoral studies and Master's degree (2023) in Transport Engineering, Institute of Technology of Cambodia</span></div>
 </footer>
+
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Dock lights in the project tile
+  const docks=document.querySelector('.docks');
+  if(docks){for(let i=0;i<36;i++){const d=document.createElement('i');d.style.setProperty('--k',(i*7)%36);docks.appendChild(d);}}
+
+  // Split statement into words
+  const st=document.getElementById('statement');
+  st.innerHTML=st.textContent.trim().split(/\s+/).map(w=>'<span class="w">'+w+'</span>').join(' ');
+  const words=[...st.querySelectorAll('.w')];
+
+  function litWords(){
+    const r=st.getBoundingClientRect(), vh=innerHeight;
+    const p=Math.min(1,Math.max(0,(vh*0.85 - r.top)/(r.height+vh*0.35)));
+    const n=Math.round(p*words.length);
+    words.forEach((w,i)=>w.classList.toggle('lit',i<n));
+  }
+  if(reduce){words.forEach(w=>w.classList.add('lit'));}
+  else{addEventListener('scroll',litWords,{passive:true});addEventListener('resize',litWords);litWords();}
+
+  // Reveal on scroll
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>reduce?el.classList.add('on'):io.observe(el));
+
+  // Count-up numbers
+  const co=new IntersectionObserver(es=>es.forEach(e=>{
+    if(!e.isIntersecting) return; co.unobserve(e.target);
+    const el=e.target, end=+el.dataset.count;
+    if(reduce){el.textContent=end;return;}
+    const t0=performance.now(), dur=1200;
+    (function tick(t){const k=Math.min(1,(t-t0)/dur);el.textContent=Math.round(end*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(tick);})(t0);
+  }),{threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(el=>co.observe(el));
+})();
+</script>
 </body>
 </html>
